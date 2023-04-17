@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Uploaded Files</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>S.No</th>
+            <th>File</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for file in uploaded_files %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ file.file.name }}</td>
+            <td>
+                <a href="{% url 'download_file' file.id %}">Download</a>
+                <a href="{% url 'view_file' file.id %}">View</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
