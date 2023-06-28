@@ -23,7 +23,8 @@ def admin_page(request):
 @staff_member_required(login_url='admin:login')
 def download_file(request, file_id):
     uploaded_file = get_object_or_404(UploadedFile, id=file_id)
-    response = HttpResponse(uploaded_file.file, content_type='application/octet-stream')
+    response = HttpResponse(
+        uploaded_file.file, content_type='application/octet-stream')
     response['Content-Disposition'] = f'attachment; filename="{uploaded_file.file.name}"'
     return response
 
